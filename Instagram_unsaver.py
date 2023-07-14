@@ -47,10 +47,9 @@ def erase_all(username):
     posts_unsaved = 0
     click_first_post()
     try:
-        next_button = WebDriverWait(driver, timeout=5).until(
-            lambda d: driver.find_element(By.CLASS_NAME, "_aaqg._aaqh"))
+        next_button = WebDriverWait(driver, timeout=5).until(lambda d: driver.find_element(By.CLASS_NAME, "_abl-"))
         unsave_div = WebDriverWait(driver, timeout=5).until(lambda d: driver.find_element(By.CLASS_NAME, "_aamz"))
-        unsave_button = WebDriverWait(driver, timeout=5).until(lambda d: unsave_div.find_element(By.CLASS_NAME, "_abm0"))
+        unsave_button = WebDriverWait(driver, timeout=5).until(lambda d: unsave_div.find_element(By.CLASS_NAME, "x1lliihq.x1n2onr6"))
         unsave_button.click()
         next_button.click()
         posts_unsaved += 1
@@ -72,7 +71,7 @@ def erase_all(username):
             print("Done")
             break
         for n in unsave_div:
-            unsave_button = n.find_element(By.CLASS_NAME, "_abm0")
+            unsave_button = n.find_element(By.CLASS_NAME, "x1lliihq.x1n2onr6")
             unsave_button.click()
             time.sleep(.2)
             next_button.click()
