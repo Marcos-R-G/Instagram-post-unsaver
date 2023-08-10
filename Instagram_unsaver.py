@@ -1,21 +1,21 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
+options = Options()
+
 
 
 # ***For headless uncomment this***
-# from selenium.webdriver.chrome.options import Options
-#
-# options = Options()
 # options.headless = True
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
 
 # ***For debugging uncomment this***
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
+driver = webdriver.Chrome(executable_path=ChromeDriverManager(version="114.0.5735.16").install(), options=options)
 
 
 def login(username, password):
