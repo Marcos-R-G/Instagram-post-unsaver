@@ -15,7 +15,7 @@ options = Options()
 
 # ***For debugging uncomment this***
 
-driver = webdriver.Chrome(executable_path=ChromeDriverManager(version="114.0.5735.16").install(), options=options)
+driver = webdriver.Chrome(ChromeDriverManager(version='114.0.5735.90').install())
 
 
 def login(username, password):
