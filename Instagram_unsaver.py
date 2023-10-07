@@ -3,19 +3,17 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
-options = Options()
+from selenium.webdriver.chrome.service import Service
+from selenium.common.exceptions import NoSuchElementException
 
 
-
-# ***For headless uncomment this***
-# options.headless = True
-# driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+options = Options
 
 
 # ***For debugging uncomment this***
-
-driver = webdriver.Chrome(ChromeDriverManager(version='114.0.5735.90').install())
+service = Service()
+options = webdriver.ChromeOptions()
+driver = webdriver.Chrome(service=service, options=options)
 
 
 def login(username, password):
@@ -61,12 +59,10 @@ def erase_all(username):
         try:
             next_button = driver.find_element(By.CLASS_NAME, "_aaqg._aaqh")
             unsave_div = driver.find_elements(By.CLASS_NAME, "_aamz")
-        except Exception:  # unsave the last post
-            last_unsave_button = driver.find_elements(By.CLASS_NAME, "_abl-")
-            last_unsave_button[5].click()
+        except NoSuchElementException:  # unsave the last post
+            last_unsave_button = driver.find_elements(By.CLASS_NAME, "x6s0dn4.x78zum5.xdt5ytf.xl56j7k")
+            last_unsave_button[4].click()
             posts_unsaved += 1
-            driver.get("https://www.instagram.com/" + username + "/saved/all-posts/?next=%2F")
-            driver.refresh()
             print("Erased: " + str(posts_unsaved))
             print("Done")
             break
